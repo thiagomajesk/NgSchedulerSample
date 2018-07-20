@@ -1,0 +1,62 @@
+﻿<div class="card" ng-class="{'border-success': !isEditing(appointment), 'border-warning': isEditing(appointment)}">
+    <h5 class="card-header text-white" ng-class="{'bg-success': !isEditing(appointment), 'bg-warning': isEditing(appointment)}">
+        <i class="fa" ng-class="{'fa-plus-circle': !isEditing(appointment), 'fa-pencil': isEditing(appointment)}"></i>
+        {{ !isEditing(appointment) ? 'New Appointment' : 'Edit Appointment'}}
+    </h5>
+    <div class="card-body">
+        <form name="form" novalidate ng-submit="form.$valid && manageAppointment(appointment)">
+            <div class="form-group">
+                <label>Patient: </label>
+                <select ng-model="appointment.patientName" name="patientName" class="custom-select" required>
+                    <option style="display:none" value="">Select Patient</option>
+                    <option ng-repeat="name in patientNames" value="{{name}}">{{name}}</option>
+                </select>
+                <div ng-messages="form.patientName.$error" ng-show="form.patientName.$touched">
+                    <p class="text-danger" ng-message="required">The name of the patient is required</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="d-block">Birthdate: </label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <i class="fa fa-calendar"></i>
+                        </span>
+                    </div>
+                    <input class="form-control" ng-model="appointment.patientBirthdate" type="date" name="patientBirthdate" required />
+                </div>
+                <div ng-messages="form.patientBirthdate.$error" ng-show="form.patientBirthdate.$touched">
+                    <p class="text-danger" ng-message="required">Is required</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="startDate">Time: </label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <i class="fa fa-clock-o"></i>
+                        </span>
+                    </div>
+                    <input class="form-control" ng-model="appointment.time" name="time" placeholder="HH:mm" min="09:00" max="18:00" type="time" required />
+                </div>
+                <small>Office hours from 09:00 to 18:00</small>
+                <div ng-messages="form.time.$error" ng-show="form.time.$touched">
+                    <p class="text-danger" ng-message="required">Is required</p>
+                    <p class="text-danger" ng-message="min">09:00 is the minimum</p>
+                    <p class="text-danger" ng-message="max">18:00 is the maximum</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="remarks">Remarks: </label>
+                <textarea class="form-control" ng-model="appointment.remarks" name="remarks" maxlength="50"></textarea>
+                <div ng-messages="form.remarks.$error" ng-show="form.remarks.$touched">
+                    <p class="text-danger" ng-message="maxlength">Please keep it simple, no more than 50 characters</p>
+                </div>
+            </div>
+            <button class="btn" type="submit" ng-class="{'btn-success btn-block': !isEditing(appointment), 'btn-warning': isEditing(appointment)}">
+                {{ !isEditing(appointment) ? 'Schedule' : 'Update   '}}
+            </button>
+            <button class="btn btn-link" ng-show="isEditing(appointment)" ng-click="cancelEditing(appointment)"> Cancel</button>
+        </form>
+    </div>
+</div>

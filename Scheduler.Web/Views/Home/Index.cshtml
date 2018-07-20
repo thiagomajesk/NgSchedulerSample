@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Scheduler.Web.Models.Appointment>
+
+<div class="row">
+    <div class="col">
+        <h1 class="text-center">Scheduler Sample</h1>
+
+        <div class="card mt-3">
+            <h4 class="card-header">
+                Next Appointments
+            </h4>
+            <div class="card-header bg-light">
+                <a asp-controller="Home" asp-action="Scheduler" class="btn btn-primary float-right">
+                    <i class="fa fa-calendar"></i>
+                    Scheduler
+                </a>
+            </div>
+            <div class="card-body">
+                <div class="list-group">
+
+                    <div condition="@(!Model.Any())" class="alert alert-secondary border-info text-info text-center" role="alert">
+                        No forthcoming appointments
+                    </div>
+
+                    @foreach (var appointment in Model)
+                    {
+                        <a class="list-group-item">
+                            <span>
+                                <i class="fa fa-user"></i>
+                                <span class="text-muted">@appointment.PatientName</span>
+                            </span>
+                            <span class="float-right">
+                                <i class="fa fa-clock-o"></i>
+                                <span class="badge badge-info">@appointment.StartDate</span>
+                            </span>
+                        </a>
+                    }
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

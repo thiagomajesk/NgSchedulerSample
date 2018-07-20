@@ -1,0 +1,54 @@
+﻿<div class="card">
+    <h5 class="card-header">
+        {{appointmentList.length || 0}}
+        Appointments for today
+    </h5>
+    <div class="card-header bg-light">
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">
+                    <i class="fa fa-search"></i>
+                </span>
+            </div>
+            <input type="text" class="form-control" placeholder="patient name..." ng-model="filter" />
+        </div>
+    </div>
+    <div class="card-body">
+
+        <div class="list-group">
+
+            <div class="alert alert-secondary border-info" role="alert" ng-if="appointmentList.length == 0">
+                <strong>Hey!</strong> It seems that we have no appointments for today.
+                <i class="fa fa-smile-o"></i>
+            </div>
+
+            <div ng-repeat="appointment in appointmentList | orderBy: 'startDate' | filter: { patientName:filter || '' } track by appointment.id "
+                 class="list-group-item list-group-item-action flex-column align-items-start">
+                <p>
+                    <i class="fa fa-clock-o mr-2"></i>
+                    <span class="badge badge-info">
+                        {{appointment.startDate | date: 'HH:mm'}} ~
+                        {{appointment.endDate | date: 'HH:mm'}}
+                    </span>
+
+                    <button class="btn btn-sm btn-danger float-right" ng-click="deleteAppointment(appointment)">
+                        <i class="fa fa-trash"></i>
+                        Delete
+                    </button>
+                    <button class="btn btn-sm btn-link float-right text-warning mr-3" ng-click="setEditing(appointment)">
+                        <i class="fa fa-pencil"></i> Edit
+                    </button>
+                </p>
+                <p class="mt-2">
+                    <i class="fa fa-user mr-2"></i>
+                    <strong>{{appointment.patientName}}</strong>
+                    (<span class="text-muted">{{appointment.patientBirthdate | date: 'dd/MM/yyyy'}}</span>)
+                </p>
+                <p class="mt-2" ng-if="appointment.remarks.length">
+                    <i class="fa fa-info-circle mr-2"></i>
+                    <span class="text-muted"> {{appointment.remarks}}</span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

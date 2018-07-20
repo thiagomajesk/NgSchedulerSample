@@ -1,0 +1,27 @@
+﻿<div class="row">
+    <div class="col">
+        <h1 class="text-center">Scheduler Sample</h1>
+
+        <div class="card mt-3" ng-controller="AppController">
+            <h4 class="card-header"> Schedule Appointments </h4>
+            <div class="card-header bg-light">
+                <a asp-controller="Home" asp-action="Index" class="btn btn-info float-right">
+                    <i class="fa fa-arrow-left"></i> Go Back
+                </a>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-4">
+                        <partial name="_DatePickerCard" />
+                        <hr class="mt-4 mb-4" />
+                        <partial name="_FormCard" />
+                    </div>
+                    <div class="col">
+                        <partial name="_ListCard" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
