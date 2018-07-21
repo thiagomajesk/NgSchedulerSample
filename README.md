@@ -5,7 +5,12 @@ A simplistic scheduler demo using AngularJs and Asp.Net Core
 
 ## Instructions
 
-*Framework version: dotnet core 2.1+ (cli or VS 15.7.5)*
+#### Dependencies:
+
+- dotnet core sdk 2.1.x (`choco install dotnetcore-sdk`)
+- SQL Server 2017 Express LocalDB 14.x (`choco install sqllocaldb`)
+
+> Alternatively, you can just use the latest version of Visual Studio 2017.
 
 **From the solution folder:**
 
