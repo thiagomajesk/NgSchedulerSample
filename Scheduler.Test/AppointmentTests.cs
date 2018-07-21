@@ -73,9 +73,6 @@ namespace Scheduler.Test
             Assert.Contains("/appointment/show", response.Headers.Location.ToString());
         }
 
-        // If this test fails, you should run it individually
-        // It seems to be a problem with the default service that 
-        // is not returning the correct headers for Location when the tests are run all together
         [Fact]
         public async Task Should_Delete_And_Return_Ok200()
         {
@@ -91,6 +88,13 @@ namespace Scheduler.Test
             };
 
             var createdResponse = await client.PostAsJsonAsync("/appointment/create", appointment);
+
+            //FIXUP
+            if (createdResponse.Headers.Location == null)
+            {
+                Assert.True(false,
+               "It seems to be a problem with the default webservice not returning the location header. Run this test individually");
+            }           
 
             var id = createdResponse?.Headers?.Location?.ToString()?.Split("=")?.LastOrDefault();
 
@@ -121,6 +125,13 @@ namespace Scheduler.Test
             var createdResponse = await client.PostAsJsonAsync("/appointment/create", appointment);
 
             var id = createdResponse?.Headers?.Location?.ToString()?.Split("=")?.LastOrDefault();
+
+            //FIXUP
+            if (createdResponse.Headers.Location == null)
+            {
+                Assert.True(false,
+               "It seems to be a problem with the default webservice not returning the location header. Run this test individually");
+            }
 
             appointment.Id = int.Parse(id);
             appointment.PatientName = "John Doe II";
