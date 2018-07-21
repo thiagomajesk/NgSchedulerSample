@@ -20,10 +20,11 @@ A simplistic scheduler demo using AngularJs and Asp.Net Core
 > dotnet run
 ```
 
-*¹ If you have any problems related to file permission while running `database update` through command line, refer to [this link](https://github.com/aspnet/EntityFramework6/issues/384). This is a known Issue that only happens with locadb standalone *
+
+> ¹ If you have any problems related to file permission while running `database update` through command line, refer to [this link](https://github.com/aspnet/EntityFramework6/issues/384). This is a known Issue that only happens with locadb 2017 standalone
 
 
-> Notice that since ssl is enabled by default, you have two options to run https in development mode:
+> ² Notice that since ssl is enabled by default, you have two options to run https in development mode:
 > - Use Visual Studio to run the app, since it already has a self signed certificate
 > - Generate a new one - for more information follow this [link](https://blogs.msdn.microsoft.com/webdev/2017/11/29/configuring-https-in-asp-net-core-across-different-platforms/) 
 
