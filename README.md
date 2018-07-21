@@ -16,9 +16,11 @@ A simplistic scheduler demo using AngularJs and Asp.Net Core
 
 ```
 > dotnet restore
-> cd Scheduler.Web & dotnet ef database update
+> cd Scheduler.Web & dotnet ef database update¹
 > dotnet run
 ```
+
+*¹ If you have any problems related to file permission while running `database update` through command line, refer to [this link](https://github.com/aspnet/EntityFramework6/issues/384). This is a known Issue that only happens with locadb standalone *
 
 
 > Notice that since ssl is enabled by default, you have two options to run https in development mode:
