@@ -17,7 +17,7 @@ A simplistic scheduler demo using AngularJs and Asp.Net Core
 ```
 > dotnet restore
 > cd Scheduler.Web & dotnet ef database update¹
-> dotnet run
+> dotnet run²
 ```
 
 
